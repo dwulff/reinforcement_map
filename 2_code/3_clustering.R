@@ -1,4 +1,14 @@
 
+
+author_net = readRDS("1_data/nets/author_net.RDS")
+reference_net = readRDS("1_data/nets/references_net.RDS")
+
+dim(author_net)
+dim(reference_net)
+
+mean(reference_net == 0)
+
+
 g = igraph::graph_from_adjacency_matrix(paper_author_net, 
                                         mode = "undirected", 
                                         weighted = TRUE)
