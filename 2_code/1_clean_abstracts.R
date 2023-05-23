@@ -11,4 +11,8 @@ data = read_csv("1_data/data.csv")
 # one or more digits
 # any number of printable characters
 # end of string
-data$Abstracts <- str_remove(data$Abstract, "(Copyright )?\\((C|c)\\)\\s?\\d+[:print:]*$")
+data$Abstracts_cleaned <- str_remove(data$Abstract, "(Copyright )?\\((C|c)\\)\\s?\\d+[:print:]*$")
+
+
+
+write_csv(data, "1_data/data_cleaned.csv")
