@@ -11,7 +11,7 @@ data = read_csv("1_data/data.csv")
 # one or more digits (= year)
 # any number of printable characters
 # end of string
-data$Abstract_cleaneded <- str_remove(data$Abstract, "(Copyright )?\\((C|c)\\)\\s?\\d+[:print:]*$")
+data$Abstract_cleaned <- str_remove(data$Abstract, "(Copyright )?\\((C|c)\\)\\s?\\d+[:print:]*$")
 
 # some copyright marks do not match the pattern above, replace them manually
 copyright_strings <- c("\\(C\\) Copyright 2014 Textrum Ltd. All rights reserved." ,
@@ -22,7 +22,7 @@ copyright_strings <- c("\\(C\\) Copyright 2014 Textrum Ltd. All rights reserved.
                        )
 
 for (copyright_string in copyright_strings) {
-  data$Abstract_cleaneded <- str_remove(data$Abstract_cleaneded, copyright_string)
+  data$Abstract_cleaned <- str_remove(data$Abstract_cleaned, copyright_string)
 }
 
 
@@ -50,10 +50,9 @@ organizers <- c("S[Ii][Gg][Nn][Ii][Ff][Ii][Cc][Aa][Nn][Cc][Ee][:punct:][^[A-Z]]"
                 "C[Oo][Nn][Cc][Ll][Uu][Ss][Ii][Oo][Nn][Ss]{0,1}[:blank:]*(?=[A-Z])")
 
 
-data$Abstracts_cleaned <- str_remove_all(data$Abstract, "F[Ii][Nn][Dd][Ii][Nn][Gg][Ss]{0,1}+(S|s)?+(:)?+( )?")
 
 for (organizer in organizers) {
-  data$Abstract_cleaneded <- str_remove(data$Abstract_cleaneded, organizer)
+  data$Abstract_cleaned <- str_remove(data$Abstract_cleaned, organizer)
 }
 
 data$Abstract_cleaned <- str_remove(data$Abstract_cleaned, "Journal of the Operational Research Society \\(2011\\) 62, 515-525. doi:10.1057/jors.2010.96 Published online 25 August 2010")
